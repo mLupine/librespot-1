@@ -54,7 +54,7 @@ impl Open for PulseAudioSink {
     fn open(device: Option<String>) -> PulseAudioSink {
         debug!("Using PulseAudio sink");
 
-        let sink = null();
+        let mut sink = null();
 
         if device.is_some() {
             sink = device.unwrap().as_ptr();
