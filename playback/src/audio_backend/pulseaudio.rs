@@ -56,7 +56,7 @@ impl Open for PulseAudioSink {
         let sink = null();
 
         if device.is_some() {
-            sink = device.as_ptr();
+            sink = device.unwrap().as_ptr();
         }
 
         let ss = pa_sample_spec {
