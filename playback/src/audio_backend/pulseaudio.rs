@@ -57,7 +57,7 @@ impl Open for PulseAudioSink {
         let sink = null();
 
         if device.is_some() {
-            sink = device.unwrap().as_ptr();
+            sink = device.unwrap().as_ptr() as *const i8;
         }
 
         let ss = pa_sample_spec {
