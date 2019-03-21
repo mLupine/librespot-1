@@ -5,6 +5,7 @@ use std::ffi::CStr;
 use std::ffi::CString;
 use std::io;
 use std::mem;
+use std::os::raw::c_char;
 use std::ptr::{null, null_mut};
 
 pub struct PulseAudioSink {
