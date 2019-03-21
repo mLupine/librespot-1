@@ -12,7 +12,7 @@ pub struct PulseAudioSink {
     ss: pa_sample_spec,
     name: CString,
     desc: CString,
-    sink: CString
+    sink: *mut CString
 }
 
 fn call_pulseaudio<T, F, FailCheck>(f: F, fail_check: FailCheck, kind: io::ErrorKind) -> io::Result<T>
@@ -87,7 +87,7 @@ impl Sink for PulseAudioSink {
                         null(),             // Use the default server.
                         self.name.as_ptr(), // Our application's name.
                         PA_STREAM_PLAYBACK,
-                        self.sink,             // PulseAudio sink name to use
+                        self.sink,          // PulseAudio sink name to use
                         self.desc.as_ptr(), // desc of our stream.
                         &self.ss,           // Our sample format.
                         null(),             // Use default channel map
