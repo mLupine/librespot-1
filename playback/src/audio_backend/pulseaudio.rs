@@ -13,7 +13,7 @@ pub struct PulseAudioSink {
     ss: pa_sample_spec,
     name: CString,
     desc: CString,
-    sink: *const c_char
+    sink: *mut c_char
 }
 
 fn call_pulseaudio<T, F, FailCheck>(f: F, fail_check: FailCheck, kind: io::ErrorKind) -> io::Result<T>
@@ -57,7 +57,7 @@ impl Open for PulseAudioSink {
         let sink = null();
 
         if device.is_some() {
-            sink = device.unwrap().as_ptr() as *const i8;
+            sink = device.unwrap().as_ptr() as *mut i8;
         }
 
         let ss = pa_sample_spec {
