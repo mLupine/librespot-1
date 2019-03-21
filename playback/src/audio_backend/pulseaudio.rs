@@ -12,7 +12,7 @@ pub struct PulseAudioSink {
     ss: pa_sample_spec,
     name: CString,
     desc: CString,
-    sink: *const i8
+    sink: *const c_char
 }
 
 fn call_pulseaudio<T, F, FailCheck>(f: F, fail_check: FailCheck, kind: io::ErrorKind) -> io::Result<T>
